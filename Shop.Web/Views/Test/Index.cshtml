@@ -1,0 +1,51 @@
+﻿@model List<Shop.Web.Models.ProvinceModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<label>
+    استانها
+</label>
+
+<select name="Province" id="ProvinceId" onchange="GetCities()">
+    <option value="0">انتخاب نمایید</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Title </option>
+
+
+    }
+
+</select>
+
+
+@section scripts
+    {
+    <script>
+        function GetCities() {
+            var $data1 = document.getElementById("ProvinceId").value;
+            $.ajax({
+                url: "/Test/City?ProvinceId=" + $data1,
+                type: 'Get',
+                dataType: "html",
+                success: function (data) {
+                    document.getElementById("Cit").innerHTML = data;
+                }
+
+            });
+
+        }
+    </script>
+}
+<label>
+    شهرها
+</label>
+<div id="Cit">
+    @Html.Action("City", "Test", new { ProvinceId = 0 })
+
+</div>
+
+
+
+

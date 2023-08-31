@@ -1,0 +1,13 @@
+﻿@model List<Shop.Web.Models.CityModel>
+
+
+
+ <select name="City" id="CityId">
+     <option value="0">انتخاب نمایید</option>
+     @foreach (var item in Model)
+     {
+         <option value="@item.Id">@item.Title </option>
+
+     }
+
+ </select>

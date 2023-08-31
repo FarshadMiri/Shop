@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+
+<div style="height:200px;background-color:antiquewhite" id="asqar">
+
+</div>
+
+<input id="data1" />
+<br />
+<input id="data2" />
+
+
+<button type="button" onclick="Calculator(1)">
+    +
+</button>
+<button type="button" onclick="Calculator(2)">
+    -
+</button>
+<button type="button" onclick="Calculator(3)">
+    *
+</button>
+<button type="button" onclick="Calculator(4)">
+    /
+</button>
+<button type="button" onclick="Calculator(5)">
+    %
+</button>
+
+
+
+
+@section scripts{
+    <script>
+
+        function Calculator(actFront) {
+
+            var $data1 = document.getElementById("data1").value;
+            var $data2 = document.getElementById("data2").value;
+
+            $.ajax({
+                url: "/Home/Test?numOne=" + $data1 + "&numTwo=" + $data2 + "&act=" + actFront,
+                type: 'Get',
+                dataType: "html",
+                success: function(data){
+                    document.getElementById("asqar").innerHTML = data;
+                }
+
+            });
+        }
+    </script>
+}
